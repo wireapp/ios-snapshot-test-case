@@ -1,7 +1,8 @@
-FBSnapshotTestCase
+iOSSnapshotTestCase (previously named FBSnapshotTestCase)
 ======================
 
-[![Build Status](https://travis-ci.org/facebook/ios-snapshot-test-case.svg)](https://travis-ci.org/facebook/ios-snapshot-test-case) [![Cocoa Pod Version](https://cocoapod-badges.herokuapp.com/v/FBSnapshotTestCase/badge.svg)](http://cocoadocs.org/docsets/FBSnapshotTestCase/)
+[![Build Status](https://travis-ci.org/uber/ios-snapshot-test-case.svg)](https://travis-ci.org/uber/ios-snapshot-test-case) 
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/iOSSnapshotTestCase.svg)](https://img.shields.io/cocoapods/v/iOSSnapshotTestCase.svg)
 
 What it does
 ------------
@@ -14,9 +15,8 @@ repository and fails the test if the two images don't match.
 Why?
 ----
 
-At Facebook we write a lot of UI code. As you might imagine, each type of
-feed story is rendered using a subclass of `UIView`. There are a lot of edge
-cases that we want to handle correctly:
+We write a lot of UI code. There are a lot of edge
+cases that we want to handle correctly when you are creating `UIView` instances:
 
 - What if there is more text than can fit in the space available?
 - What if an image doesn't match the size of an image view?
@@ -27,7 +27,7 @@ views. You can do a lot of rectangle asserts, but these are hard to understand
 or visualize. Looking at an image diff shows you exactly what changed and how
 it will look to users.
 
-We developed `FBSnapshotTestCase` to make snapshot tests easy.
+`iOSSnapshotTestCase` was developed to make snapshot tests easy.
 
 Installation with CocoaPods
 ---------------------------
@@ -37,15 +37,15 @@ Installation with CocoaPods
      ```
      target "Tests" do
        use_frameworks!
-       pod 'FBSnapshotTestCase'
+       pod 'iOSSnapshotTestCase'
      end
      ```
 
-   If you support iOS 7 use `FBSnapshotTestCase/Core` instead, which doesn't contain Swift support.
+   If your test target is Objective-C only use `iOSSnapshotTestCase/Core` instead, which doesn't contain Swift support.
 
    Replace "Tests" with the name of your test project.
 
-2. There are [three ways](https://github.com/facebook/ios-snapshot-test-case/blob/master/FBSnapshotTestCase/FBSnapshotTestCase.h#L19-L29) of setting reference image directories, the recommended one is to define `FB_REFERENCE_IMAGE_DIR` in your scheme. This should point to the directory where you want reference images to be stored. At Facebook, we normally use this:
+2. There are [three ways](https://github.com/uber/ios-snapshot-test-case/blob/master/FBSnapshotTestCase/FBSnapshotTestCase.h#L19-L29) of setting reference image directories, the recommended one is to define `FB_REFERENCE_IMAGE_DIR` in your scheme. This should point to the directory where you want reference images to be stored. We normally use this:
 
 |Name|Value|
 |:---|:----|
@@ -90,11 +90,13 @@ have separate targets for the two types.
 Authors
 -------
 
-`FBSnapshotTestCase` was written at Facebook by
+`iOSSnapshotTestCase` was written at Facebook by
 [Jonathan Dann](https://facebook.com/j.p.dann) with significant contributions by
 [Todd Krabach](https://facebook.com/toddkrabach).
+
+Today it is maintained by [Uber](https://github.com/uber) and [Alan Zeino](https://github.com/alanzeino).
 
 License
 -------
 
-`FBSnapshotTestCase` is BSD-licensed. See `LICENSE`.
+`iOSSnapshotTestCase` is MIT–licensed. See `LICENSE`.
