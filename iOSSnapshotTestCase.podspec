@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "iOSSnapshotTestCase"
   s.module_name  = "FBSnapshotTestCase"
-  s.version      = "3.0.0"
+  s.version      = "6.1.0"
   s.summary      = "Snapshot view unit tests for iOS"
   s.description  = <<-DESC
                     A "snapshot test case" takes a configured UIView or CALayer
@@ -15,14 +15,14 @@ Pod::Spec.new do |s|
   s.author       = 'Uber'
   s.source       = { :git => "https://github.com/uber/ios-snapshot-test-case.git",
                      :tag => s.version.to_s }
-  s.ios.deployment_target  = '8.1'
-  s.tvos.deployment_target = '9.0'
+  s.ios.deployment_target  = '10.0'
+  s.tvos.deployment_target = '10.0'
+  s.swift_version = '5.1'
   s.requires_arc = true
   s.frameworks   = 'XCTest','UIKit','Foundation','QuartzCore'
   s.pod_target_xcconfig = { 'ENABLE_BITCODE' => 'NO' }
   s.user_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PLATFORM_DIR)/Developer/Library/Frameworks' }
   s.default_subspecs = 'SwiftSupport'
-  s.swift_version = '4.0'
   s.subspec 'Core' do |cs|
     cs.source_files = 'FBSnapshotTestCase/**/*.{h,m}', 'FBSnapshotTestCase/*.{h,m}'
     cs.public_header_files = 'FBSnapshotTestCase/FBSnapshotTestCase.h','FBSnapshotTestCase/FBSnapshotTestCasePlatform.h','FBSnapshotTestCase/FBSnapshotTestController.h'

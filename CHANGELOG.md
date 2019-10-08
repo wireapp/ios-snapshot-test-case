@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file.
 
+## Upcoming Release
+
+- Fixed issue where images without the screen scale in the file name were failing. ([#100](https://github.com/uber/ios-snapshot-test-case/pull/100))
+- Add convenience FBSnapshotVerifyViewController() function for Swift users ([#101](https://github.com/uber/ios-snapshot-test-case/pull/101))
+- Updated for Xcode 10.11 and Swift 5.1.
+
+## 6.1.0
+
+- Added support for Xcode 9 attachments. ([#86](https://github.com/uber/ios-snapshot-test-case/pull/86))
+- Updated the default suffixes to only contain the currently targetted architecture. ([#87](https://github.com/uber/ios-snapshot-test-case/pull/87))
+- Use [UIGraphicsImageRenderer](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer) to generate the image for a UIView instead of a custom graphics context ([#95](https://github.com/uber/ios-snapshot-test-case/pull/95))
+- Use the main screen instead of the key window to calculate the correct size in tests that do not have a host application. ([#79](https://github.com/uber/ios-snapshot-test-case/pull/79))
+- Display the correct error message when tests are run in record mode. ([#65](https://github.com/uber/ios-snapshot-test-case/pull/65))
+- Updated for Xcode 10.2.1 and Swift 5.0.1.
+
+## 6.0.3
+
+  - This is a compatibility release for Swift 5 — we're building the Carthage pre–compiled framework with Xcode 10.2 and the Swift 5 compiler. If you haven't updated to Xcode 10.2, you don't need to worry about this version.
+
+## 6.0.2
+
+  - Update for Swift 5 compiler.
+
+## 6.0.0
+
+  - We deleted the `agnosticOptions` and `deviceAgnostic` properties. We didn't want to do this initially but we thought it was good to make a clean break from the old properties that had incorrect naming, as well as adding a new property (`fileNameOptions`) that includes screen scale as an option, so users of the library can choose to omit the screen scale from their file names.
+  - Deployment Target set to iOS 10.0. For our own sanity, we only want to support three major versions of iOS at a time. If you need to support iOS 8 and/or 9, you need to use version 5.0 of the library.
+
+## 5.0.2
+
+  - Adds the ability to allow color changes for pixels. You can now set a 'pixel tolerance', which is a percentage for how much of a shift from any given color you allow on a per pixel basis. This can be useful for Xcode upgrades, when you change the iOS version (Base SDK) you use in your Simulator, or even to allow tests to run on multiple iOS versions at the same time. It can be used with `FBSnapshotVerifyViewWithPixelOptions` and `FBSnapshotVerifyLayerWithPixelOptions` (Thanks to @JerryTheIntern).
+
+## 4.0.0
+
+  - Adds the ability to override the folder name where snapshots are going to be saved for each test class.
+  - Support for library test bundles.
+  - Support for setting `IMAGE_DIFF_DIR` using preprocessor or a property on `FBSnapshotTestController`.
+  - Formatted the project using clang-format to escape two space indentation hell.
+  - Added nullability annotations to the entire project to improve portability with Swift and the clang analyzer.
+  - Deprecated `deviceAgnostic` in favour of `agnosticOptions`.
+  - Remove dead Swift code in `SwiftSupport.swift`
+
+  Apologies for the churn in this version. We realised after we had merged #14 that we broke semantic versioning with `3.1.0` so we unpublished that podspec and then merged all of the breaking changes we had on the backlog that were pressing.
+
 ## 3.0.0
 
   - Project has been relicensed to MIT via the original project and Facebook's PATENTS file has been removed with their blessing. Thank you Facebook!

@@ -1,8 +1,9 @@
 iOSSnapshotTestCase (previously named FBSnapshotTestCase)
 ======================
 
-[![Build Status](https://travis-ci.org/uber/ios-snapshot-test-case.svg)](https://travis-ci.org/uber/ios-snapshot-test-case) 
+[![Build Status](https://travis-ci.org/uber/ios-snapshot-test-case.svg)](https://travis-ci.org/uber/ios-snapshot-test-case)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/iOSSnapshotTestCase.svg)](https://img.shields.io/cocoapods/v/iOSSnapshotTestCase.svg)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 What it does
 ------------
@@ -34,7 +35,7 @@ Installation with CocoaPods
 
 1. Add the following lines to your Podfile:
 
-     ```
+     ```ruby
      target "Tests" do
        use_frameworks!
        pod 'iOSSnapshotTestCase'
@@ -52,7 +53,7 @@ Installation with CocoaPods
 |`FB_REFERENCE_IMAGE_DIR`|`$(SOURCE_ROOT)/$(PROJECT_NAME)Tests/ReferenceImages`|
 |`IMAGE_DIFF_DIR`|`$(SOURCE_ROOT)/$(PROJECT_NAME)Tests/FailureDiffs`|
 
-Define the `IMAGE_DIFF_DIR` to the directory where you want to store diffs of failed snapshots.
+Define the `IMAGE_DIFF_DIR` to the directory where you want to store diffs of failed snapshots. There are also [three ways](https://github.com/uber/ios-snapshot-test-case/blob/master/FBSnapshotTestCase/FBSnapshotTestCase.h#L34-L43) to set failed image diff directories.
 
 ![](FBSnapshotTestCaseDemo/Scheme_FB_REFERENCE_IMAGE_DIR.png)
 
@@ -77,15 +78,21 @@ Features
   in a single test method.
 - Support for `CALayer` via `FBSnapshotVerifyLayer`.
 - `usesDrawViewHierarchyInRect` to handle cases like `UIVisualEffect`, `UIAppearance` and Size Classes.
-- `isDeviceAgnostic` to allow appending the device model (`iPhone`, `iPad`, `iPod Touch`, etc), OS version and screen size to the images (allowing to have multiple tests for the same «snapshot» for different `OS`s and devices).
+- `fileNameOptions` to control appending the device model (`iPhone`, `iPad`, `iPod Touch`, etc), OS version, screen size and screen scale to the images (allowing to have multiple tests for the same «snapshot» for different `OS`s and devices).
 
 Notes
 -----
 
-Your unit test must be an "application test", not a "logic test." (That is, it
-must be run within the Simulator so that it has access to UIKit.) In Xcode 5
+Your unit tests _should_ be inside an "application" bundle, not a "logic/library" test bundle. (That is, it
+should be run within the Simulator so that it has access to UIKit.)
+
+In Xcode 5
 and later new projects only offer application tests, but older projects will
 have separate targets for the two types.
+
+*However*, if you are writing snapshot tests inside a library/framework, you might want to keep your test bundle as a library test bundle without a Test Host.
+
+Read more on this [here](docs/LibraryVsApplicationTestBundles.md).
 
 Authors
 -------
@@ -94,7 +101,7 @@ Authors
 [Jonathan Dann](https://facebook.com/j.p.dann) with significant contributions by
 [Todd Krabach](https://facebook.com/toddkrabach).
 
-Today it is maintained by [Uber](https://github.com/uber) and [Alan Zeino](https://github.com/alanzeino).
+Today it is maintained by [Uber](https://github.com/uber).
 
 License
 -------
